@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./src/styles/style.css">
+    <title>KFC Orders</title>
+    <script type="text/javascript">
+        function orderClick() {
+            document.getElementById("lblName").innerHTML = document.getElementById("txtName").value;
+            document.getElementById("lblMobile").innerHTML = document.getElementById("txtMobile").value;
+
+            var mealName = "";
+            var addOnName = "";
+            var mealCost = 0;
+            var addOnCost = 0;
+            var total= 0;
+
+            var BurgerRadio = document.getElementById("optBurger");
+            var RollerRadio = document.getElementById("optRoller");
+
+            if(BurgerRadio.checked)
+            {
+                mealName = BurgerRadio.value;
+                mealCost = 200;
+            }
+            if(RollerRadio.checked)
+            {
+                mealName = RollerRadio.value;
+                mealCost = 120;
+            }
+
+            var ThumbsUpCheckBox = document.getElementById("checkThumbsup");
+            var SpriteCheckBox = document.getElementById("checkSprite");
+            var extraChickenCheckBox = document.getElementById("checkChicken");
+
+            if(ThumbsUpCheckBox.checked)
+            {
+                addOnName += ThumbsUpCheckBox.value + "<br>";
+                addOnCost = 50;
+                mealCost += addOnCost
+            }
+            if(SpriteCheckBox.checked)
+            {
+                addOnName += SpriteCheckBox.value + "<br>";
+                addOnCost = 60;
+                mealCost +=addOnCost;
+            }
+            if(extraChickenCheckBox.checked)
+            {
+                addOnName += extraChickenCheckBox.value +  "<br>";
+                addOnCost = 150;
+                mealCost +=addOnCost;
+            }
+            total = mealCost;
+
+            document.getElementById("lblMeal").innerHTML = mealName;
+            document.getElementById("lblAddon").innerHTML = addOnName;
+            document.getElementById("lblTotal").innerHTML = total;
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="header">
+            <img src="./public/images/banner.JPG" width="100%" height="400">
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="accordion" id="kfcForm">
+            <div class="accordion-item mb-2">
+                <div class="accordion-header">
+                    <button data-bs-target="#cntInfo" data-bs-toggle="collapse" class="btn btn-danger w-100">Contact Information</button>
+                </div>
+                <div class="accordion-collapse collapse show" id="cntInfo" data-bs-parent="#kfcForm">
+                    <div class="accordion-body">
+                        <dl>
+                            <dt>Name</dt>
+                            <dd><input type="text" class="form-control" id="txtName"></dd>
+                            <dt>Mobile Number</dt>
+                            <dd><input type="text" class="form-control" id="txtMobile"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item mb-2">
+                <div class="accordion-header">
+                    <button data-bs-target="#meal" data-bs-toggle="collapse" class="btn btn-danger w-100">Meals</button>
+                </div>
+                <div class="accordion-collapse collapse" id="meal" data-bs-parent="#kfcForm">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <img src="./public/images/burger.jpg" class="card-img-top">
+                                    <div class="card-header">
+                                        <h3>KFC Buger</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <input type="radio" class="form-check-input" checked name="meal" id="optBurger" value="Burger"> &#8377 200/-
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <img src="./public/images/roller.jpg" class="card-img-top">
+                                    <div class="card-header">
+                                        <h3>KFC Roller</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <input type="radio" class="form-check-input" name="meal" id="optRoller" value="Roller"> &#8377 120/-
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <button data-bs-target="#addon" data-bs-toggle="collapse" class="btn btn-danger w-100">Add On's</button>
+                </div>
+                <div class="accordion-collapse collapse" id="addon" data-bs-parent="#kfcForm">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <img src="./public/images/thumbup.JPG" class="card-img-top">
+                                    <div class="card-header">
+                                        <h3>Thumbs Up</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <input type="checkbox" class="form-check-input" id="checkThumbsup" value="Thumbsup"> &#8377 50/-
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <img src="./public/images/sprit.jpg" class="card-img-top">
+                                    <div class="card-header">
+                                        <h3>Sprite</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <input type="checkbox" class="form-check-input" id="checkSprite" value="Sprite"> &#8377 60/-
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <img src="./public/images/extraChicken.jpg" class="card-img-top">
+                                    <div class="card-header">
+                                        <h3>Extra Chicken pices</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <input type="checkbox" class="form-check-input" id="checkChicken" value="Extra Chicken"> &#8377 150/-
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button onclick="orderClick()" data-bs-target="#orderSummary" data-bs-toggle="modal" class="btn btn-warning btn-lg m-4">Order Now</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="orderSummary">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Order Bill Summary</h3>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>Name</dt>
+                        <dd id="lblName"></dd>
+                        <dt>Mobile</dt>
+                        <dd id="lblMobile"></dd>
+                        <dt>Meal</dt>
+                        <dd id="lblMeal"></dd>
+                        <dt>Addon</dt>
+                        <dd id="lblAddon"></dd>
+                        <dt>Total Amount</dt>
+                        <dd id="lblTotal"></dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
